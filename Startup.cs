@@ -24,6 +24,7 @@ namespace reactredux_identity_jwt
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddSwaggerGen();
             services.AddControllersWithViews();
 
             // In production, the React files will be served from this directory
@@ -51,6 +52,9 @@ namespace reactredux_identity_jwt
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
+            app.UseSwagger();
+            app.UseSwaggerUI();
+            
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
