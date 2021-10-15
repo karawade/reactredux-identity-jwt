@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace reactredux_identity_jwt.Controllers
 {
@@ -100,7 +100,7 @@ namespace reactredux_identity_jwt.Controllers
                     authClaims.Add(new Claim(ClaimTypes.Role, userRole));
                 }
 
-                var authSigningKey = new System.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration["JWT: SecretKey"]));
+                var authSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration["JWT: SecretKey"]));
 
                 var token = new JwtSecurityToken(
                 issuer: _configuration["JWT: ValidIssuer"],
