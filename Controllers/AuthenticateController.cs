@@ -100,11 +100,11 @@ namespace reactredux_identity_jwt.Controllers
                     authClaims.Add(new Claim(ClaimTypes.Role, userRole));
                 }
 
-                var authSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration["JWT: SecretKey"]));
+                var authSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration["JWT:SecretKey"]));
 
                 var token = new JwtSecurityToken(
-                issuer: _configuration["JWT: ValidIssuer"],
-                audience: _configuration["JWT: ValidAudience"],
+                issuer: _configuration["JWT:ValidIssuer"],
+                audience: _configuration["JWT:ValidAudience"],
                 expires: System.DateTime.Now.AddHours(3),
                 claims: authClaims,
                 signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
